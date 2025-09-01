@@ -1,4 +1,4 @@
-.loginContainer {
+.registerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,7 +7,7 @@
   background: #f97316;
 }
 
-.loginCard {
+.registerCard {
   padding: 40px 30px;
   width: 360px;
   background: #ffffff;
@@ -32,30 +32,30 @@
     margin-bottom: 20px !important;
 }
 
-.loginButton {
+.registerButton {
   margin-top: 80px !important;
   background-color: #f97316 !important;
   font-weight: bold !important;
 }
 
-.loginButton:hover {
+.registerButton:hover {
   background-color: #ea580c !important;
 }
 
-.registerText {
+.loginText {
     color: #555555;
     margin-top: 20px;
     margin-bottom: 0px;
     font-size: 14px;
 }
 
-.registerLink {
+.loginLink {
     color: #555555;
     font-weight: bold;
     text-decoration: none;
 }
 
-.registerLink:hover {
+.loginLink:hover {
     color: #f97316;
     text-decoration: underline;
 }

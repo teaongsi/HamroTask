@@ -8,7 +8,7 @@ export default function Login() {
         <div className="loginContainer">
             <Card className="loginCard">
                 <img src={logo} alt="logo" className="logo" />
-                <h2 className="headingText">Welcome</h2>
+                <h2 className="headingText">Welcome Back</h2>
                 <form className="loginForm">
                     <TextField className="inputField" label="Email" />
                     <TextField className="inputField" label="Password" type="password" />
