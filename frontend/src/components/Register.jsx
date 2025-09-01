@@ -6,32 +6,32 @@ import logo from "../assets/logo.png";
 import "../styles/register.css";
 
 export default function Register() {
-  const [input, setInput] = useState({
-    firstName: "",
-    lastName: "",
-    role: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
-  });
+    const [input, setInput] = useState({
+        firstName: "",
+        lastName: "",
+        role: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+    });
 
-  const handleChange = (event) => {
-    setInput((prevVal) => ({
-      ...prevVal,
-      [event.target.name]: event.target.value
-    }));
-  };
+    const handleChange = (event) => {
+        setInput((prevVal) => ({
+        ...prevVal,
+        [event.target.name]: event.target.value
+        }));
+    };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", input);
-      alert(res.data.message);
-    } catch (error) {
-      console.error(error.response?.data);
-      alert(error.response?.data?.message || "Something went wrong");
-    }
-  };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const res = await axios.post("http://localhost:5000/api/auth/register", input);
+            alert(res.data.message);
+        } catch (error) {
+            console.error(error.response?.data);
+            alert(error.response?.data?.message || "Something went wrong");
+        }
+    };
 
   return (
     <div className="registerContainer">
