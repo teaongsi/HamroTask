@@ -34,8 +34,10 @@
 
 .loginButton {
   margin-top: 80px !important;
+  width: 100% !important;
   background-color: #f97316 !important;
   font-weight: bold !important;
+  color: #ffffff !important;
 }
 
 .loginButton:hover {

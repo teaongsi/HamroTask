@@ -32,10 +32,30 @@
     margin-bottom: 20px !important;
 }
 
+.roleField {
+    width: 100%;
+    padding: 20px;
+    margin: 0px 0 20px 0;
+    border: 1px solid #aaaaaa;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #555555;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.roleField:focus {
+  outline: none;
+  border-color: #1e3a8a;
+  box-shadow: 0 0 3px #3b3a3a1a;
+}
+
 .registerButton {
   margin-top: 80px !important;
+  width: 100% !important;
   background-color: #f97316 !important;
   font-weight: bold !important;
+  color: #ffffff !important;
 }
 
 .registerButton:hover {
