@@ -21,7 +21,7 @@ export default function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/login", input);
+            const res = await axios.post("http://localhost:8000/api/auth/login", input);
             alert(res.data.message);
         } catch (error) {
             console.error(error.response?.data);

@@ -25,7 +25,7 @@ export default function Register() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/register", input);
+            const res = await axios.post("http://localhost:8000/api/auth/register", input);
             alert(res.data.message);
         } catch (error) {
             console.error(error.response?.data);
