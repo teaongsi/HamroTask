@@ -1,7 +1,12 @@
 import { Schema, model } from "mongoose";
+import passportLocalMongoose from "passport-local-mongoose";
 
 const userSchema = new Schema({
-    name: {
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
         type: String,
         required: true
     },
@@ -12,11 +17,10 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        required: true
     },
     role: {
         type: String,
-        enum: ['client', 'taker', 'admin'],
+        enum: ['client', 'tasker', 'admin'],
         default: 'client'
     },
     location: {
@@ -30,4 +34,5 @@ const userSchema = new Schema({
     }
 }, { timestamps: true });
 
+userSchema.plugin(passportLocalMongoose, { usernameField: "email" });
 export default model('User', userSchema);
