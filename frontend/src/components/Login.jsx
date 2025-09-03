@@ -30,18 +30,9 @@ export default function Login({ setUser }) {
                 user: res.data.user,
                 loginTime: new Date().toISOString()
             }));
-            
+
             setUser(res.data.user);
-            const r = res.data.user.role;    
-            if(r === "client") {
-                navigate('/dashboard/client');
-            } else if(r === "tasker") {
-                navigate('/dashboard/tasker');
-            } else if(r === "admin") {
-                navigate('/dashboard/admin');
-            } else {
-                navigate('unauthorized');
-            }
+            navigate('/dashboard');
         } catch (error) {
             console.error(error.response?.data);
             alert(error.response?.data?.message || "Something went wrong");
