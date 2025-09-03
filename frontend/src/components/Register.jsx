@@ -1,11 +1,13 @@
 import { Card, TextField, Button } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import api from "../api/axios"
 import logo from "../assets/logo.png";
 import "../styles/register.css";
 
 export default function Register() {
+    const navigate = useNavigate();
+
     const [input, setInput] = useState({
         firstName: "",
         lastName: "",
@@ -25,8 +27,8 @@ export default function Register() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const res = await axios.post("http://localhost:8000/api/auth/register", input);
-            alert(res.data.message);
+            const res = await api.post("/api/auth/register", input, { withCredentials: true });
+            navigate('/login');
         } catch (error) {
             console.error(error.response?.data);
             alert(error.response?.data?.message || "Something went wrong");
