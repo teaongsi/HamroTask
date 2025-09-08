@@ -1,0 +1,37 @@
+.contactWrapper {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+.contactContent {
+  max-width: 500px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #e0e7ef;
+}
+.contactContent h2 {
+  color: #2563eb;
+  margin-bottom: 16px;
+}
+.contactDetails {
+  margin-bottom: 24px;
+  font-size: 1.1em;
+}
+.contactDetails div {
+  margin-bottom: 8px;
+}
+.socialLinks {
+  margin-top: 18px;
+  font-size: 1.1em;
+}
+.socialLinks a {
+  color: #2563eb;
+  text-decoration: none;
+  margin: 0 8px;
+  transition: color 0.2s;
+}
+.socialLinks a:hover {
+  color: #1e40af;
+  text-decoration: underline;
+}

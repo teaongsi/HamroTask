@@ -9,73 +9,92 @@
 
 .registerCard {
   padding: 40px 30px;
-  width: 360px;
-  background: #ffffff;
-  border-radius: 12px !important;
-  box-shadow: 0 4px 12px #3b3a3a1a !important;
+  width: 420px;
+  background: #e9edf3;
+  border-radius: 24px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
   text-align: center;
 }
 
 .logo {
   width: 250px;
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
+  display: block;
 }
 
-.headingText {
-  margin-bottom: 20px;
-  font-weight: 600;
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .inputField {
-    width: 100% !important;
-    background-color: #ffffff;
-    margin-bottom: 20px !important;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 16px;
+  background: #ffffff !important;
+  box-sizing: border-box;
+  color: #0f172a !important;
+  pointer-events: auto;
+  user-select: text;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.inputField::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #f97316;
 }
 
 .roleField {
-    width: 100%;
-    padding: 20px;
-    margin: 0px 0 20px 0;
-    border: 1px solid #aaaaaa;
-    border-radius: 6px;
-    font-size: 14px;
-    color: #555555;
-    background-color: #ffffff;
-    cursor: pointer;
-}
-
-.roleField:focus {
-  outline: none;
-  border-color: #1e3a8a;
-  box-shadow: 0 0 3px #3b3a3a1a;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 16px;
+  background: #ffffff;
+  color: #0f172a;
 }
 
 .registerButton {
-  margin-top: 80px !important;
-  width: 100% !important;
-  background-color: #f97316 !important;
-  font-weight: bold !important;
-  color: #ffffff !important;
+  background: #f97316;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 8px;
 }
 
 .registerButton:hover {
-  background-color: #ea580c !important;
+  background: #ea580c;
 }
 
 .loginText {
-    color: #555555;
-    margin-top: 20px;
-    margin-bottom: 0px;
-    font-size: 14px;
+  color: #64748b;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-size: 14px;
 }
 
 .loginLink {
-    color: #555555;
-    font-weight: bold;
-    text-decoration: none;
+  color: #f97316;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 14px;
 }
 
 .loginLink:hover {
-    color: #f97316;
-    text-decoration: underline;
+  color: #ea580c;
+  text-decoration: underline;
 }

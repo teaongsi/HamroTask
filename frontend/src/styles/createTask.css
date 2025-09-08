@@ -1,90 +1,87 @@
-.loginContainer {
+.createTaskWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.createTaskContent {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
-  background: #f97316;
+  padding: 40px;
+  background-color: #f97316;
 }
 
-.loginCard {
-  padding: 40px 30px;
-  width: 360px;
+.createTaskForm {
+  color: #0f172a;
   background: #e9edf3;
   border-radius: 24px;
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+  padding: 40px;
+  width: 520px;
+}
+
+.createTaskForm h2 {
+  margin-bottom: 30px;
   text-align: center;
+  color: #0f172a;
+  font-size: 24px;
+  font-weight: 700;
 }
 
-.logo {
-  width: 250px;
-  margin: 0 auto 20px auto;
-  display: block;
+.formGroup {
+  margin-bottom: 20px;
 }
 
-.loginForm {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.inputField {
+.formGroup input,
+.formGroup textarea {
   width: 100%;
   padding: 16px;
   border: 1px solid #d1d5db;
   border-radius: 12px;
   font-size: 16px;
   background: #ffffff !important;
-  box-sizing: border-box;
   color: #0f172a !important;
   pointer-events: auto;
   user-select: text;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  box-sizing: border-box;
 }
 
-.inputField::placeholder {
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
   color: #64748b;
   opacity: 1;
 }
 
-.inputField:focus {
+.formGroup input:focus,
+.formGroup textarea:focus {
   outline: none;
   border-color: #f97316;
 }
 
-.loginButton {
+.formGroup textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.createButton {
   background: #f97316;
   color: white;
   border: none;
   padding: 14px 24px;
   border-radius: 9999px;
   cursor: pointer;
+  width: 100%;
   font-weight: 700;
   font-size: 16px;
   margin-top: 8px;
 }
 
-.loginButton:hover {
+.createButton:hover {
   background: #ea580c;
-}
-
-.registerText {
-  color: #64748b;
-  margin-top: 20px;
-  margin-bottom: 8px;
-  font-size: 14px;
-}
-
-.registerLink {
-  color: #f97316;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.registerLink:hover {
-  color: #ea580c;
-  text-decoration: underline;
 }

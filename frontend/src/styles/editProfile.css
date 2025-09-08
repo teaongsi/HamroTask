@@ -1,0 +1,102 @@
+.editProfileWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.editProfileContent {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: #f97316;
+}
+
+.editProfileForm {
+  color: #0f172a;
+  background: #e9edf3;
+  border-radius: 24px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+  padding: 40px;
+  width: 520px;
+}
+
+.editProfileForm h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #0f172a;
+}
+
+.formGroup {
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 16px;
+  background: #ffffff !important;
+  color: #0f172a !important;
+  pointer-events: auto;
+  user-select: text;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #f97316;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+/* Avatar / profile picture */
+.previewImage {
+  width: 140px;
+  height: 140px;
+  margin: 10px auto 0 auto;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #f97316;
+}
+
+.saveButton {
+  background: #f97316;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 9999px;
+  cursor: pointer;
+  width: 220px;
+  font-weight: 700;
+  display: block;
+  margin: 8px auto 0 auto;
+}
+
+.saveButton:hover {
+  background: #ea580c;
+}

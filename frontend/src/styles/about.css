@@ -1,0 +1,26 @@
+.aboutWrapper {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+.aboutContent {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #e0e7ef;
+}
+.aboutContent h2 {
+  color: #2563eb;
+  margin-bottom: 16px;
+}
+.aboutDetails {
+  margin-top: 24px;
+}
+.aboutDetails h3 {
+  color: #1e40af;
+  margin-top: 18px;
+}
+.aboutDetails p {
+  margin-bottom: 12px;
+}
