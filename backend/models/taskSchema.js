@@ -17,10 +17,6 @@ const taskSchema = new Schema({
         type: Number,
         required: true
     },
-    image: {
-        type: String,
-        required: true
-    },
     status: {
         type: String,
         enum: ['open', 'in progress', 'completed'],
@@ -33,11 +29,6 @@ const taskSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    },
-    assignedTo: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        default: null
     }
 }, { timestamps: true });
 

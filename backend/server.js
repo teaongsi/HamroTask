@@ -6,12 +6,11 @@ import authRoutes from './router/authRoutes.js';
 import session from "express-session";
 import passport from "passport";
 import User from './models/userSchema.js';
-import userRoutes from './router/userRoutes.js';
-import taskRoutes from './router/taskRoutes.js';
-import applicationRoutes from './router/applicationRoutes.js';
 
 const app = express();
 const port = process.env.PORT || 8000;
+
+const whitelist = ["http://localhost:5173"]; 
 
 app.use(cors({
     origin: "http://localhost:5173",
@@ -20,24 +19,10 @@ app.use(cors({
     credentials: true
 }));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Serve uploaded images statically
-import path from 'path';
-app.use('/uploads/tasks', express.static(path.join(process.cwd(), 'uploads/tasks')));
-app.use('/uploads/profilePics', express.static(path.join(process.cwd(), 'uploads/profilePics')));
-
 app.use(session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: { 
-        secure: false,
-        httpOnly: true,
-        sameSite: "lax",
-        maxAge: 1000*60*60*24*7
-    }
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false
 }));
 
 app.use(passport.initialize());
@@ -47,17 +32,10 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/tasks', taskRoutes);
-app.use('/api/applications', applicationRoutes);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/api/auth/status", (req, res) => {
-    if (req.isAuthenticated()) {
-        return res.json({ loggedIn: true, user: req.user });
-    }
-    res.json({ loggedIn: false });
-});
+app.use('/api/auth', authRoutes);
 
 const startServer = async () => {
     await connectDB();

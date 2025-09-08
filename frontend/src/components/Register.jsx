@@ -1,4 +1,5 @@
-import { useNavigate, Link } from "react-router-dom";
+import { Card, TextField, Button } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import api from "../api/axios"
 import logo from "../assets/logo.png";
@@ -26,7 +27,7 @@ export default function Register() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await api.post("/api/auth/register", input, { withCredentials: true });
+            const res = await api.post("/api/auth/register", input, { withCredentials: true });
             navigate('/login');
         } catch (error) {
             console.error(error.response?.data);
@@ -36,22 +37,23 @@ export default function Register() {
 
   return (
     <div className="registerContainer">
-      <div className="registerCard">
+      <Card className="registerCard">
         <img src={logo} alt="logo" className="logo" />
-        <form className="registerForm" onSubmit={handleSubmit}>
-          <input
+        <h2 className="headingText">Create Account</h2>
+        <form className="loginForm" onSubmit={handleSubmit}>
+          <TextField
             value={input.firstName}
             onChange={handleChange}
             name="firstName"
             className="inputField"
-            placeholder="First Name"
+            label="First Name"
           />
-          <input
+          <TextField
             value={input.lastName}
             onChange={handleChange}
             name="lastName"
             className="inputField"
-            placeholder="Last Name"
+            label="Last Name"
           />
           <select
             value={input.role}
@@ -63,37 +65,38 @@ export default function Register() {
             <option value="client">Client</option>
             <option value="tasker">Tasker</option>
           </select>
-          <input
+          <TextField
             value={input.email}
             onChange={handleChange}
             name="email"
             className="inputField"
-            placeholder="Email"
-            type="email"
+            label="Email"
           />
-          <input
+          <TextField
             value={input.password}
             onChange={handleChange}
             name="password"
             className="inputField"
-            placeholder="Password"
+            label="Password"
             type="password"
           />
-          <input
+          <TextField
             value={input.confirmPassword}
             onChange={handleChange}
             name="confirmPassword"
             className="inputField"
-            placeholder="Confirm Password"
+            label="Confirm Password"
             type="password"
           />
-          <button type="submit" className="registerButton">
+          <Button type="submit" className="registerButton">
             Register
-          </button>
+          </Button>
         </form>
         <p className="loginText">Already have an account?</p>
-        <Link to="/login" className="loginLink">Login</Link>
-      </div>
+        <Link to="/login" className="loginLink">
+          Login
+        </Link>
+      </Card>
     </div>
   );
 }
