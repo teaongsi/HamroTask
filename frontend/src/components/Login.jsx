@@ -1,4 +1,3 @@
-import { Card, TextField, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import api from "../api/axios";
@@ -24,7 +23,6 @@ export default function Login({ setUser }) {
         try {
             const res = await api.post("/api/auth/login", input, { withCredentials: true })
             
-            console.log(res.data);
 
             localStorage.setItem('userData', JSON.stringify({
                 user: res.data.user,
@@ -41,17 +39,32 @@ export default function Login({ setUser }) {
 
     return (
         <div className="loginContainer">
-            <Card className="loginCard">
+            <div className="loginCard">
                 <img src={logo} alt="logo" className="logo" />
-                <h2 className="headingText">Welcome Back</h2>
                 <form onSubmit={handleSubmit} className="loginForm">
-                    <TextField value={input.email} onChange={handleChange} name="email" className="inputField" label="Email" />
-                    <TextField value={input.password} onChange={handleChange} name="password"className="inputField" label="Password" type="password" />
-                    <Button type="submit" className="loginButton">Login</Button>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        value={input.email} 
+                        onChange={handleChange} 
+                        className="inputField" 
+                        placeholder="Email" 
+                        required 
+                    />
+                    <input 
+                        type="password" 
+                        name="password" 
+                        value={input.password} 
+                        onChange={handleChange} 
+                        className="inputField" 
+                        placeholder="Password" 
+                        required 
+                    />
+                    <button type="submit" className="loginButton">Login</button>
                 </form>
                 <p className="registerText">Don't have an account yet?</p>
-                <Link to ="/register" className="registerLink">Register</Link>
-            </Card>
+                <Link to="/register" className="registerLink">Register</Link>
+            </div>
         </div>
     )
 }
