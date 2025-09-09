@@ -15,9 +15,6 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
-    password: {
-        type: String,
-    },
     role: {
         type: String,
         enum: ['client', 'tasker', 'admin'],
@@ -30,6 +27,9 @@ const userSchema = new Schema({
         type: [String]
     },
     bio: {
+        type: String
+    },
+    profilePicture: {
         type: String
     }
 }, { timestamps: true });
