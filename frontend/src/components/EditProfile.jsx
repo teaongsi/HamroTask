@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from './Header';
 import Footer from './Footer';
 import logo from "../assets/logo.png";
-import "../styles/editProfile.css";
+import '../styles/editProfile.css';
 import api from "../api/axios";
 
 export default function EditProfile() {
@@ -184,7 +184,7 @@ export default function EditProfile() {
                     : form.profilePicture
                   : URL.createObjectURL(form.profilePicture)}
                 alt="Preview"
-                className="previewImage"
+                className="previewProfile"
               />
             )}
           </div>
