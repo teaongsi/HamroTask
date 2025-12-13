@@ -1,0 +1,227 @@
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  background: #f97316;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+.dashboardContent {
+  flex: 1;
+  background: #e9edf3;
+  border: 8px solid #f97316;
+  border-radius: 24px;
+  margin: 0 10px;
+  margin-top: 80px;
+  margin-bottom: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.logoutButton {
+  background: #ea580c;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  position: absolute;
+  top: 200px;
+  right: 50px;
+}
+
+.logoutButton:hover {
+  background: #c2410c;
+}
+
+.clientDashboard {
+  padding: 20px;
+}
+
+.searchSection {
+  margin-bottom: 30px;
+}
+
+.searchBar {
+  background: #f97316;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.searchBar input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+.searchBar input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tasksSection h3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 80px;
+  margin-bottom: 20px;
+  color: #0f172a;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.tasksGrid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px;
+}
+
+.taskCard {
+  flex: 0 0 calc(33.333% - 20px);
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 24px;
+}
+
+.taskCard:nth-child(3n) {
+  margin-right: 0;
+}
+.taskCard:hover {
+  transform: translateY(-2px);
+}
+
+.taskImg {
+  width: 100%;
+  height: 300px;
+  background: #f97316;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.imagePlaceholder {
+  color: white;
+  font-weight: 600;
+}
+
+.taskInfo h4 {
+  margin: 0 0 8px 0;
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.taskStatus {
+  background: #e9edf3;
+  color: #000000;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+  margin: 0;
+}
+
+.noTasks {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+}
+
+.addTaskButton {
+  position: fixed;
+  bottom: 50px;
+  right: 45px;
+  background: #f97316;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  width: 120px;
+  height: 60px;
+  cursor: pointer;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+  transition: all 0.2s;
+  padding: 0;
+  border: 3px solid #e9edf3;
+}
+
+.addTaskButton:hover {
+  background: #ea580c;
+  transform: scale(1.05);
+}
+
+.taskerDashboard {
+  padding: 20px;
+}
+
+.searchRow {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.bigSearch {
+  background: #f97316;
+  border-radius: 24px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bigSearch input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+.searchIcon {
+  color: white;
+}
+
+.categoryRow {
+  margin-top: 16px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.categoryChip {
+  background: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.categoryChip:hover {
+  background: #f8fafc;
+}
+
+.acceptButton {
+  background: #f97316;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.acceptButton:hover {
+  background: #ea580c;
+}
