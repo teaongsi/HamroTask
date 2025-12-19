@@ -18,7 +18,6 @@ export default function EditTask({ task, onSave, onCancel }) {
     const { name, value, files } = e.target;
     if (name === "image" && files && files[0]) {
       setImageFile(files[0]);
-      // Only use blob URL for preview, never persist
       setForm({ ...form, image: files[0] });
     } else {
       setForm({ ...form, [name]: value });
@@ -53,7 +52,6 @@ export default function EditTask({ task, onSave, onCancel }) {
     <div className="editTaskWrapper">
       <main className="editTaskContent">
         <form className="editTaskForm" onSubmit={handleSubmit} encType="multipart/form-data">
-          <h2>Edit Task</h2>
           <div className="formGroup">
             <label>Title</label>
             <input name="title" value={form.title} onChange={handleChange} required />

@@ -9,6 +9,7 @@ import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
 import CreateTask from './components/CreateTask';
 import TaskDetails from './components/TaskDetails';
+import EditTask from './components/EditTask';
 import api from "./api/axios"
 
 export default function App() {
@@ -54,8 +55,11 @@ export default function App() {
         <Route path="/editprofile" element={
           user ? <EditProfile /> : <Navigate to="/login" />
         } />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/edittask" element={
+          user ? <EditTask /> : <Navigate to="/login" />
+        } />
+    <Route path="/contact" element={<Contact />} />
+    <Route path="/about" element={<About />} />
         <Route path="*" element={<Navigate to={user ? "/dashboard" : "/login"} />} />
       </Routes>
     </BrowserRouter>

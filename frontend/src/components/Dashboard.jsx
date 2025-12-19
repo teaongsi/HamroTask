@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import ClientDashboard from "./ClientDashboard";
 import TaskerDashboard from "./TaskerDashboard";
 import AdminDashboard from "./AdminDashboard";
 import Header from "./Header";
 import Footer from "./Footer";
+import api from "../api/axios";
 import "../styles/dashboard.css";
 
 export default function Dashboard() {
+    const navigate = useNavigate();
     const [userData, setUser] = useState(null);
 
     useEffect(() => {
@@ -20,6 +23,19 @@ export default function Dashboard() {
             }
         }
     }, []);
+
+    const logout = async () => {
+        try {
+            await api.post("/api/auth/logout", {}, {
+                withCredentials: true
+            });
+        } catch (error) {
+            console.error("Error during logout:", error);
+        }
+
+        setUser(null);
+        window.location.href = "/login";
+    };
 
     if (!userData) {
         return <div>Loading...</div>;

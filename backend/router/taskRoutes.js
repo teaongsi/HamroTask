@@ -126,7 +126,9 @@ router.delete('/:id', isAuthenticated, async (req, res) => {
             return res.status(404).json({ message: 'Task not found' });
         }
 
-        if (task.postedBy.toString() !== req.user._id.toString()) {
+        const isOwner = task.postedBy.toString() === req.user._id.toString();
+        const isAdmin = req.user.role === 'admin';
+        if (!isOwner && !isAdmin) {
             return res.status(403).json({ message: 'Not authorized to delete this task' });
         }
 

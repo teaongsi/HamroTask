@@ -1,11 +1,12 @@
+
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Delete as DeleteIcon } from "@mui/icons-material";
 import api from "../api/axios";
+import CompactTaskCard from "./CompactTaskCard";
+import CompactUserCard from "./CompactUserCard";
 import "../styles/admin.css";
+import "../styles/profile.css";
 
 export default function AdminDashboard() {
-    const navigate = useNavigate();
     const [tab, setTab] = useState('tasks');
     const [tasks, setTasks] = useState([]);
     const [users, setUsers] = useState([]);
@@ -78,7 +79,7 @@ export default function AdminDashboard() {
         try {
             await api.delete(`/api/tasks/${taskId}`);
             alert('Task deleted successfully!');
-            fetchData(); // Refresh the list
+            fetchData();
         } catch (error) {
             console.error('Failed to delete task:', error);
             alert(error.response?.data?.message || 'Failed to delete task');
@@ -93,7 +94,7 @@ export default function AdminDashboard() {
         try {
             await api.delete(`/api/users/${userId}`);
             alert('User deleted successfully!');
-            fetchData(); // Refresh the list
+            fetchData();
         } catch (error) {
             console.error('Failed to delete user:', error);
             alert(error.response?.data?.message || 'Failed to delete user');
@@ -101,8 +102,8 @@ export default function AdminDashboard() {
     };
 
     return (
-        <div className="adminProfileDashboardWrapper">
-            <div className="adminProfile">
+        <div className="adminProfileDashboardWrapper" style={{display:'flex',flexDirection:'row',height:'100vh'}}>
+            <div className="adminProfileSidebar" style={{width:'40%',minWidth:'320px',maxWidth:'500px',display:'flex',alignItems:'center',justifyContent:'center',background:'#fff',boxShadow:'0 0 8px #eee'}}>
                 <div className="profileCard">
                     {adminLoading ? (
                         <div>Loading profile...</div>
@@ -134,14 +135,14 @@ export default function AdminDashboard() {
                                 <p className="profileRole">{admin.role}</p>
                                 <p className="profileEmail">{admin.email}</p>
                                 {admin.bio && <p className="profileBio">{admin.bio}</p>}
-                                <button className="logoutButton" onClick={logout} style={{marginTop:'16px'}}>Logout</button>
+                                <button className="editButton" onClick={logout}>Logout</button>
                             </div>
                         </>
                     )}
                 </div>
             </div>
-            <div className="adminDashboardMainContent">
-                <div className="mainCard">
+            <div className="adminDashboardMainContent" style={{width:'60%',display:'flex',alignItems:'flex-start',justifyContent:'center',overflowY:'auto'}}>
+                <div className="mainCard" style={{width:'100%',marginTop:'24px'}}>
                     <h2>Admin Dashboard</h2>
                     <div className="adminTabs">
                         <button className={`adminTab${tab === 'tasks' ? ' active' : ''}`} onClick={() => setTab('tasks')}>Tasks</button>
@@ -154,26 +155,12 @@ export default function AdminDashboard() {
                                     <h3>All Tasks</h3>
                                     <div className="cardGrid">
                                         {tasks.map(task => (
-                                            <div 
-                                                key={task._id} 
-                                                className="adminTaskCard"
-                                                onClick={() => navigate(`/task/${task._id}`)}
-                                                style={{ cursor: 'pointer', position: 'relative' }}
-                                            >
-                                                <button 
-                                                    className="adminDeleteBtn"
-                                                    onClick={(e) => handleDeleteTask(task._id, e)}
-                                                    title="Delete Task"
-                                                >
-                                                    <DeleteIcon />
-                                                </button>
-                                                <div className="adminTaskTitle">{task.title}</div>
-                                                <div className="adminTaskStatus">Status: <b>{task.status}</b></div>
-                                                <div className="adminTaskUser">Posted by: {task.postedBy?.firstName} {task.postedBy?.lastName}</div>
-                                                <div className="adminTaskCategory">Category: {task.category}</div>
-                                                <div className="adminTaskBudget">Budget: NPR {task.budget}</div>
-                                                <div className="adminTaskDate">Created: {new Date(task.createdAt).toLocaleString()}</div>
-                                            </div>
+                                            <CompactTaskCard
+                                                key={task._id}
+                                                task={task}
+                                                showDelete={true}
+                                                onDelete={handleDeleteTask}
+                                            />
                                         ))}
                                     </div>
                                 </div>
@@ -182,24 +169,12 @@ export default function AdminDashboard() {
                                     <h3>All Users</h3>
                                     <div className="cardGrid">
                                         {users.map(user => (
-                                            <div 
-                                                key={user._id} 
-                                                className="adminUserCard"
-                                                style={{ position: 'relative' }}
-                                            >
-                                                <button 
-                                                    className="adminDeleteBtn"
-                                                    onClick={(e) => handleDeleteUser(user._id, e)}
-                                                    title="Delete User"
-                                                >
-                                                    <DeleteIcon />
-                                                </button>
-                                                <div className="adminUserName">{user.firstName} {user.lastName}</div>
-                                                <div className="adminUserEmail">{user.email}</div>
-                                                <div className="adminUserRole">Role: <b>{user.role}</b></div>
-                                                {user.location && <div className="adminUserLocation">Location: {user.location}</div>}
-                                                {user.skills?.length > 0 && <div className="adminUserSkills">Skills: {user.skills.join(', ')}</div>}
-                                            </div>
+                                            <CompactUserCard
+                                                key={user._id}
+                                                user={user}
+                                                showDelete={true}
+                                                onDelete={handleDeleteUser}
+                                            />
                                         ))}
                                     </div>
                                 </div>

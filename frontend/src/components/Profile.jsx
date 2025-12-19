@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import api from "../api/axios";
+import CompactTaskCard from "./CompactTaskCard";
 import "../styles/profile.css";
 
 export default function Profile() {
@@ -34,7 +35,6 @@ export default function Profile() {
     if (user && user.role === 'tasker') {
       fetchAssignedTasks();
     }
-    // If admin is on /profile, redirect to /admin dashboard
     if (user && user.role === 'admin' && window.location.pathname === '/profile') {
       window.location.href = '/admin';
     }
@@ -66,7 +66,6 @@ export default function Profile() {
 
   const loadUserData = async () => {
     try {
-      // Try localStorage first
       const ls = localStorage.getItem('userData');
       if (ls) {
         try {
@@ -82,7 +81,6 @@ export default function Profile() {
         setUser(data);
         localStorage.setItem('userData', JSON.stringify({ user: data }));
       } catch {
-
         const { data } = await api.get('/api/auth/status');
         if (data?.loggedIn) {
           setUser(data.user);
@@ -120,7 +118,7 @@ export default function Profile() {
                   className="profileImage"
                   onError={e => {
                     e.target.onerror = null;
-                    e.target.src = '/assets/logo.png'; // fallback image
+                    e.target.src = '/assets/logo.png';
                   }}
                 />
               ) : (
@@ -149,7 +147,7 @@ export default function Profile() {
               <button className="editButton" onClick={handleEdit}>
                 Edit Profile
               </button>
-              <button className="logoutButton" onClick={logout} style={{marginLeft: '12px'}}>
+              <button className="editButton" onClick={logout} style={{marginTop: '12px'}}>
                 Logout
               </button>
             </div>
@@ -167,33 +165,10 @@ export default function Profile() {
                 ) : (
                   <div className="profileTaskGrid">
                     {tasks.map(task => (
-                      <div 
-                        key={task._id} 
-                        className="profileTaskCardWithImg"
-                        onClick={() => navigate(`/task/${task._id}`)}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        <div className="profileTaskImgWrap">
-                          {task.image ? (
-                            <img
-                              src={task.image.startsWith('/uploads/')
-                                ? `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}${task.image}`
-                                : task.image}
-                              alt="Task"
-                              className="profileTaskImg"
-                              onError={e => {e.target.onerror = null; e.target.src = '/assets/logo.png';}}
-                            />
-                          ) : (
-                            <div className="imagePlaceholder">image</div>
-                          )}
-                        </div>
-                        <div className="profileTaskInfo">
-                          <div><b>{task.title}</b> <span style={{color:'#f97316'}}>[{task.status}]</span></div>
-                          <div>Budget: NPR {task.budget}</div>
-                          <div>Category: {task.category}</div>
-                          <div>Created: {new Date(task.createdAt).toLocaleString()}</div>
-                        </div>
-                      </div>
+                      <CompactTaskCard
+                        key={task._id}
+                        task={task}
+                      />
                     ))}
                   </div>
                 )}
@@ -209,33 +184,10 @@ export default function Profile() {
                 ) : (
                   <div className="profileTaskGrid">
                     {assignedTasks.map(task => (
-                      <div 
-                        key={task._id} 
-                        className="profileTaskCardWithImg"
-                        onClick={() => navigate(`/task/${task._id}`)}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        <div className="profileTaskImgWrap">
-                          {task.image ? (
-                            <img
-                              src={task.image.startsWith('/uploads/')
-                                ? `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}${task.image}`
-                                : task.image}
-                              alt="Task"
-                              className="profileTaskImg"
-                              onError={e => {e.target.onerror = null; e.target.src = '/assets/logo.png';}}
-                            />
-                          ) : (
-                            <div className="imagePlaceholder">image</div>
-                          )}
-                        </div>
-                        <div className="profileTaskInfo">
-                          <div><b>{task.title}</b> <span style={{color:'#f97316'}}>[{task.status}]</span></div>
-                          <div>Budget: NPR {task.budget}</div>
-                          <div>Category: {task.category}</div>
-                          <div>Created: {new Date(task.createdAt).toLocaleString()}</div>
-                        </div>
-                      </div>
+                      <CompactTaskCard
+                        key={task._id}
+                        task={task}
+                      />
                     ))}
                   </div>
                 )}

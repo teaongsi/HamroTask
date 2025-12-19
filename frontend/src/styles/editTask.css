@@ -1,11 +1,10 @@
 .previewImage {
-  width: 50%;
-  height: 50%px;
-  margin: 20px auto 0 auto;
-  display: block;
-  border-radius: 8px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
-  border: 4px solid #f97316;
+  border-radius: 8px;
+  margin-top: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 .editTaskWrapper {
   display: flex;
@@ -79,7 +78,7 @@
 
 .saveButton {
   background: #f97316;
-  color: #ffffff;
+  color: #fff;
   border: none;
   padding: 12px 28px;
   border-radius: 12px;
@@ -96,7 +95,7 @@
 
 .cancelButton {
   background: #ea580c;
-  color: #ffffff;
+  color: #fff;
   border: none;
   padding: 12px 28px;
   border-radius: 12px;
