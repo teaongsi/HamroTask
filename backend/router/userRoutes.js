@@ -1,21 +1,9 @@
 import express from 'express';
 import User from '../models/userSchema.js';
-import multer from 'multer';
-import path from 'path';
 import { isAuthenticated } from '../middleware/auth.js';
+import { upload, processImageUpload } from '../utils/imageUpload.js';
 
 const router = express.Router();
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(process.cwd(), 'uploads/profilePics'));
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + '-' + file.originalname);
-    }
-});
-const upload = multer({ storage });
 
 router.get('/all', isAuthenticated, async (req, res) => {
     try {
@@ -45,10 +33,28 @@ router.put('/me', isAuthenticated, upload.single('profilePicture'), async (req, 
             ...(bio !== undefined && { bio }),
             ...(location !== undefined && { location }),
         };
-        if (Array.isArray(skills)) update.skills = skills;
-        if (req.file) {
-            update.profilePicture = `/uploads/profilePics/${req.file.filename}`;
+        
+        if (typeof skills === 'string') {
+            try {
+                update.skills = JSON.parse(skills);
+            } catch {
+                update.skills = skills.split(',').map(s => s.trim()).filter(Boolean);
+            }
+        } else if (Array.isArray(skills)) {
+            update.skills = skills;
         }
+        
+        if (req.file) {
+            const imageUrl = await processImageUpload(req, 'profilePics');
+            if (imageUrl) {
+
+                const currentUser = await User.findById(req.user._id);
+                if (currentUser?.profilePicture && !currentUser.profilePicture.startsWith('http')) {
+                }
+                update.profilePicture = imageUrl;
+            }
+        }
+        
         const user = await User.findByIdAndUpdate(req.user._id, update, { new: true }).select('-salt -hash');
         return res.json({ message: 'Profile updated', user });
     } catch (error) {

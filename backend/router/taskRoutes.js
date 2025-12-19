@@ -1,19 +1,7 @@
 import express from 'express';
 import Task from '../models/taskSchema.js';
 import { isAuthenticated } from '../middleware/auth.js';
-import multer from 'multer';
-import path from 'path';
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(process.cwd(), 'uploads/tasks'));
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + '-' + file.originalname);
-    }
-});
-const upload = multer({ storage });
+import { upload, processImageUpload } from '../utils/imageUpload.js';
 
 const router = express.Router();
 
@@ -73,13 +61,18 @@ router.post('/', isAuthenticated, upload.single('image'), async (req, res) => {
             return res.status(400).json({ message: 'Title, description, category, budget, and image are required' });
         }
 
+        const imageUrl = await processImageUpload(req, 'tasks');
+        if (!imageUrl) {
+            return res.status(400).json({ message: 'Failed to upload image' });
+        }
+
         const newTask = new Task({
             title,
             description,
             category,
-            budget,
+            budget: parseFloat(budget),
             location,
-            image: `/uploads/tasks/${req.file.filename}`,
+            image: imageUrl,
             postedBy: req.user._id
         });
 
