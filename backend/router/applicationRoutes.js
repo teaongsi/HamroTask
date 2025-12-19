@@ -51,6 +51,25 @@ router.get('/my', isAuthenticated, async (req, res) => {
     }
 });
 
+router.get('/task/:taskId/status', isAuthenticated, async (req, res) => {
+    try {
+        const { taskId } = req.params;
+        
+        const application = await Applicant.findOne({
+            task: taskId,
+            applicant: req.user._id
+        });
+        
+        if (!application) {
+            return res.json({ applied: false, status: null });
+        }
+        
+        res.json({ applied: true, status: application.status });
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to check application status', error });
+    }
+});
+
 router.get('/task/:taskId', isAuthenticated, async (req, res) => {
     try {
         const { taskId } = req.params;

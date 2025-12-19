@@ -77,13 +77,12 @@ export default function Profile() {
         } catch {}
       }
 
-      // Fetch from API
       try {
         const { data } = await api.get('/api/users/me');
         setUser(data);
         localStorage.setItem('userData', JSON.stringify({ user: data }));
       } catch {
-        // Fallback to auth status
+
         const { data } = await api.get('/api/auth/status');
         if (data?.loggedIn) {
           setUser(data.user);
@@ -168,7 +167,12 @@ export default function Profile() {
                 ) : (
                   <div className="profileTaskGrid">
                     {tasks.map(task => (
-                      <div key={task._id} className="profileTaskCardWithImg">
+                      <div 
+                        key={task._id} 
+                        className="profileTaskCardWithImg"
+                        onClick={() => navigate(`/task/${task._id}`)}
+                        style={{ cursor: 'pointer' }}
+                      >
                         <div className="profileTaskImgWrap">
                           {task.image ? (
                             <img
@@ -205,7 +209,12 @@ export default function Profile() {
                 ) : (
                   <div className="profileTaskGrid">
                     {assignedTasks.map(task => (
-                      <div key={task._id} className="profileTaskCardWithImg">
+                      <div 
+                        key={task._id} 
+                        className="profileTaskCardWithImg"
+                        onClick={() => navigate(`/task/${task._id}`)}
+                        style={{ cursor: 'pointer' }}
+                      >
                         <div className="profileTaskImgWrap">
                           {task.image ? (
                             <img

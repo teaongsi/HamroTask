@@ -225,3 +225,21 @@
 .acceptButton:hover {
   background: #ea580c;
 }
+
+.acceptedButton {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 10px;
+  cursor: default;
+  opacity: 0.8;
+}
+
+.acceptedButton:disabled {
+  opacity: 0.8;
+  cursor: default;
+}

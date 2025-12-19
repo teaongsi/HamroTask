@@ -161,6 +161,38 @@
   background: #dc2626;
 }
 
+.acceptedBtn {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: default;
+  opacity: 0.8;
+}
+
+.acceptedBtn:disabled {
+  opacity: 0.8;
+  cursor: default;
+}
+
+.rejectedBtn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: default;
+  opacity: 0.8;
+}
+
+.rejectedBtn:disabled {
+  opacity: 0.8;
+  cursor: default;
+}
+
 .taskActions {
   display: flex;
   gap: 12px;

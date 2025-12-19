@@ -8,6 +8,8 @@ export default function TaskerDashboard() {
     const [loading, setLoading] = useState(true);
     const [assignedTasks, setAssignedTasks] = useState([]);
     const [assignedLoading, setAssignedLoading] = useState(true);
+    const [applications, setApplications] = useState([]);
+    const [applicationStatusMap, setApplicationStatusMap] = useState({});
 
     useEffect(() => {
         (async () => {
@@ -30,6 +32,21 @@ export default function TaskerDashboard() {
                 setAssignedLoading(false);
             }
         })();
+        (async () => {
+            try {
+                const { data } = await api.get('/api/applications/my');
+                setApplications(data);
+                const statusMap = {};
+                data.forEach(app => {
+                    if (app.task && app.task._id) {
+                        statusMap[app.task._id] = app.status;
+                    }
+                });
+                setApplicationStatusMap(statusMap);
+            } catch (error) {
+                console.error('Failed to fetch applications:', error);
+            }
+        })();
     }, []);
 
     const filtered = useMemo(() => {
@@ -45,6 +62,15 @@ export default function TaskerDashboard() {
     const handleAccept = async (taskId) => {
         try {
             await api.post(`/api/applications/${taskId}/apply`, { message: 'I would like to work on this task' });
+            setApplicationStatusMap(prev => ({ ...prev, [taskId]: 'pending' }));
+            const { data } = await api.get('/api/applications/my');
+            const statusMap = {};
+            data.forEach(app => {
+                if (app.task && app.task._id) {
+                    statusMap[app.task._id] = app.status;
+                }
+            });
+            setApplicationStatusMap(statusMap);
             alert('Application submitted successfully!');
         } catch (error) {
             console.error('Failed to apply:', error);
@@ -105,7 +131,15 @@ export default function TaskerDashboard() {
                             <p className="taskStatus">{task.status}</p>
                         </div>
                         <div className="taskActions">
-                            <button className="acceptButton" onClick={e => {e.stopPropagation(); handleAccept(task._id);}}>Accept</button>
+                            {applicationStatusMap[task._id] ? (
+                                <button className="acceptedButton" disabled>
+                                    {applicationStatusMap[task._id] === 'accepted' ? 'Accepted' : 
+                                     applicationStatusMap[task._id] === 'rejected' ? 'Rejected' : 
+                                     'Applied'}
+                                </button>
+                            ) : (
+                                <button className="acceptButton" onClick={e => {e.stopPropagation(); handleAccept(task._id);}}>Accept</button>
+                            )}
                         </div>
                     </div>
                 ))}

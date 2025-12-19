@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Delete as DeleteIcon } from "@mui/icons-material";
 import api from "../api/axios";
 import "../styles/admin.css";
 
 export default function AdminDashboard() {
+    const navigate = useNavigate();
     const [tab, setTab] = useState('tasks');
     const [tasks, setTasks] = useState([]);
     const [users, setUsers] = useState([]);
@@ -67,6 +70,36 @@ export default function AdminDashboard() {
         window.location.href = "/login";
     };
 
+    const handleDeleteTask = async (taskId, e) => {
+        e.stopPropagation();
+        if (!window.confirm('Are you sure you want to delete this task? This action cannot be undone.')) {
+            return;
+        }
+        try {
+            await api.delete(`/api/tasks/${taskId}`);
+            alert('Task deleted successfully!');
+            fetchData(); // Refresh the list
+        } catch (error) {
+            console.error('Failed to delete task:', error);
+            alert(error.response?.data?.message || 'Failed to delete task');
+        }
+    };
+
+    const handleDeleteUser = async (userId, e) => {
+        e.stopPropagation();
+        if (!window.confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
+            return;
+        }
+        try {
+            await api.delete(`/api/users/${userId}`);
+            alert('User deleted successfully!');
+            fetchData(); // Refresh the list
+        } catch (error) {
+            console.error('Failed to delete user:', error);
+            alert(error.response?.data?.message || 'Failed to delete user');
+        }
+    };
+
     return (
         <div className="adminProfileDashboardWrapper">
             <div className="adminProfile">
@@ -121,7 +154,19 @@ export default function AdminDashboard() {
                                     <h3>All Tasks</h3>
                                     <div className="cardGrid">
                                         {tasks.map(task => (
-                                            <div key={task._id} className="adminTaskCard">
+                                            <div 
+                                                key={task._id} 
+                                                className="adminTaskCard"
+                                                onClick={() => navigate(`/task/${task._id}`)}
+                                                style={{ cursor: 'pointer', position: 'relative' }}
+                                            >
+                                                <button 
+                                                    className="adminDeleteBtn"
+                                                    onClick={(e) => handleDeleteTask(task._id, e)}
+                                                    title="Delete Task"
+                                                >
+                                                    <DeleteIcon />
+                                                </button>
                                                 <div className="adminTaskTitle">{task.title}</div>
                                                 <div className="adminTaskStatus">Status: <b>{task.status}</b></div>
                                                 <div className="adminTaskUser">Posted by: {task.postedBy?.firstName} {task.postedBy?.lastName}</div>
@@ -137,7 +182,18 @@ export default function AdminDashboard() {
                                     <h3>All Users</h3>
                                     <div className="cardGrid">
                                         {users.map(user => (
-                                            <div key={user._id} className="adminUserCard">
+                                            <div 
+                                                key={user._id} 
+                                                className="adminUserCard"
+                                                style={{ position: 'relative' }}
+                                            >
+                                                <button 
+                                                    className="adminDeleteBtn"
+                                                    onClick={(e) => handleDeleteUser(user._id, e)}
+                                                    title="Delete User"
+                                                >
+                                                    <DeleteIcon />
+                                                </button>
                                                 <div className="adminUserName">{user.firstName} {user.lastName}</div>
                                                 <div className="adminUserEmail">{user.email}</div>
                                                 <div className="adminUserRole">Role: <b>{user.role}</b></div>

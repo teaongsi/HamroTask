@@ -179,7 +179,7 @@ export default function TaskDetails() {
                                                     <p className="applicationStatus">Status: {applicant.status}</p>
                                                 </div>
                                                 <div className="applicantActions">
-                                                    {applicant.status === 'pending' && (
+                                                    {applicant.status === 'pending' ? (
                                                         <>
                                                             <button 
                                                                 className="acceptBtn"
@@ -194,6 +194,14 @@ export default function TaskDetails() {
                                                                 Reject
                                                             </button>
                                                         </>
+                                                    ) : applicant.status === 'accepted' ? (
+                                                        <button className="acceptedBtn" disabled>
+                                                            Accepted
+                                                        </button>
+                                                    ) : (
+                                                        <button className="rejectedBtn" disabled>
+                                                            Rejected
+                                                        </button>
                                                     )}
                                                 </div>
                                             </div>

@@ -16,7 +16,7 @@ export default function Contact() {
           </div>
           <div className="socialLinks">
             <a href="" target="_blank" >Facebook</a> |
-            <a href="" target="_blank" >Twitter</a> |
+            <a href="" target="_blank" >Tiktok</a> |
             <a href="" target="_blank" >Instagram</a>
           </div>
       </div>

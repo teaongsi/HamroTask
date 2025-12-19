@@ -13,10 +13,12 @@
   flex-direction: column;
   align-items: center;
   padding: 18px 16px;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
 }
 .profileTaskCardWithImg:hover {
   box-shadow: 0 6px 18px rgba(249, 115, 22, 0.18);
+  transform: translateY(-2px);
 }
 .profileTaskImgWrap {
   width: 100%;
