@@ -160,3 +160,73 @@
 .rejectBtn:hover {
   background: #dc2626;
 }
+
+.taskActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.taskOwnerActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.editBtn {
+  background: #f97316;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.editBtn:hover {
+  background: #ea580c;
+}
+
+.deleteBtn {
+  background: #f97316;
+  color: white;
+  border: none;
+  padding: 9px 10px;
+  border-radius: 10%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.deleteBtn:hover {
+  background: #ea580c;
+}
+
+.deleteBtn svg {
+  font-size: 20px;
+}
+
+.completeBtn {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.completeBtn:hover {
+  background: #059669;
+}
+
+.completeBtn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}

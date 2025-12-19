@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Delete as DeleteIcon } from "@mui/icons-material";
 import api from "../api/axios";
 import "../styles/taskDetails.css";
 import EditTask from "./EditTask";
@@ -12,11 +13,25 @@ export default function TaskDetails() {
     const [loading, setLoading] = useState(true);
     const [editing, setEditing] = useState(false);
     const [updating, setUpdating] = useState(false);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
+        loadUserData();
         loadTaskDetails();
         loadApplicants();
     }, [taskId]);
+
+    const loadUserData = () => {
+        try {
+            const storedUser = localStorage.getItem('userData');
+            if (storedUser) {
+                const parsed = JSON.parse(storedUser);
+                setUser(parsed.user);
+            }
+        } catch (error) {
+            console.error('Failed to load user data:', error);
+        }
+    };
 
     const loadTaskDetails = async () => {
         try {
@@ -69,6 +84,25 @@ export default function TaskDetails() {
         }
     };
 
+    const handleDelete = async () => {
+        if (!window.confirm('Are you sure you want to delete this task? This action cannot be undone.')) {
+            return;
+        }
+
+        try {
+            await api.delete(`/api/tasks/${taskId}`);
+            alert('Task deleted successfully!');
+            navigate('/dashboard');
+        } catch (error) {
+            console.error('Failed to delete task:', error);
+            alert(error.response?.data?.message || 'Failed to delete task');
+        }
+    };
+
+    const isTaskOwner = () => {
+        return user && task && user._id === task.postedBy?._id && user.role === 'client';
+    };
+
     if (loading) return <div>Loading...</div>;
     if (!task) return <div>Task not found</div>;
 
@@ -113,8 +147,13 @@ export default function TaskDetails() {
                                     <span className="status">Status: {task.status}</span>
                                 </div>
                                 <div className="taskActions">
-                                    {window.localStorage.getItem('userData') && JSON.parse(window.localStorage.getItem('userData')).user.role === 'client' && (
-                                        <button className="editBtn" onClick={handleEdit}>Edit Task</button>
+                                    {isTaskOwner() && (
+                                        <div className="taskOwnerActions">
+                                            <button className="editBtn" onClick={handleEdit}>Edit Task</button>
+                                            <button className="deleteBtn" onClick={handleDelete} title="Delete Task">
+                                                <DeleteIcon />
+                                            </button>
+                                        </div>
                                     )}
                                     {task.status === 'in progress' && (
                                         <button className="completeBtn" onClick={handleMarkCompleted} disabled={updating}>
@@ -124,7 +163,7 @@ export default function TaskDetails() {
                                 </div>
                             </div>
                         </div>
-                        {window.localStorage.getItem('userData') && JSON.parse(window.localStorage.getItem('userData')).user.role === 'client' && (
+                        {isTaskOwner() && (
                             <div className="applicantsSection">
                                 <h3>Applicants ({applicants.length})</h3>
                                 {applicants.length === 0 ? (
