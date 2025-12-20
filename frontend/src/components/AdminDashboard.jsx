@@ -103,7 +103,7 @@ export default function AdminDashboard() {
 
     return (
         <div className="adminProfileDashboardWrapper" style={{display:'flex',flexDirection:'row',height:'100vh'}}>
-            <div className="adminProfileSidebar" style={{width:'40%',minWidth:'320px',maxWidth:'500px',display:'flex',alignItems:'center',justifyContent:'center',background:'#fff',boxShadow:'0 0 8px #eee'}}>
+            <div className="adminProfileSidebar" style={{width:'40%',minWidth:'320px',maxWidth:'500px',display:'flex',alignItems:'center',justifyContent:'center',background:'#f97316',boxShadow:'0 0 8px #eee'}}>
                 <div className="profileCard">
                     {adminLoading ? (
                         <div>Loading profile...</div>
@@ -141,7 +141,7 @@ export default function AdminDashboard() {
                     )}
                 </div>
             </div>
-            <div className="adminDashboardMainContent" style={{width:'60%',display:'flex',alignItems:'flex-start',justifyContent:'center',overflowY:'auto'}}>
+            <div className="adminDashboardMainContent" style={{width:'100%',display:'flex',alignItems:'flex-start',justifyContent:'center',overflowY:'auto'}}>
                 <div className="mainCard" style={{width:'100%',marginTop:'24px'}}>
                     <h2>Admin Dashboard</h2>
                     <div className="adminTabs">
@@ -152,7 +152,7 @@ export default function AdminDashboard() {
                         {loading ? <p>Loading...</p> : error ? <p>{error}</p> : (
                             tab === 'tasks' ? (
                                 <div className="adminTasksGrid">
-                                    <h3>All Tasks</h3>
+                                    <h3 style={{color: "#f97316" }}>All Tasks</h3>
                                     <div className="cardGrid">
                                         {tasks.map(task => (
                                             <CompactTaskCard
@@ -166,7 +166,7 @@ export default function AdminDashboard() {
                                 </div>
                             ) : (
                                 <div className="adminUsersGrid">
-                                    <h3>All Users</h3>
+                                    <h3 style={{color: "#f97316" }}>All Users</h3>
                                     <div className="cardGrid">
                                         {users.map(user => (
                                             <CompactUserCard

@@ -36,62 +36,6 @@
   margin-top: 24px;
 }
 
-.adminTaskCard,
-.adminUserCard {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-.adminTaskCard {
-  cursor: pointer;
-}
-.adminTaskCard:hover {
-  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.15);
-  transform: translateY(-2px);
-}
-.adminUserCard:hover {
-  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.15);
-}
-.adminTaskTitle {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ea580c;
-}
-.adminTaskStatus {
-  font-size: 1rem;
-  color: #f97316;
-}
-.adminTaskUser,
-.adminTaskCategory,
-.adminTaskBudget,
-.adminTaskDate {
-  font-size: 0.95rem;
-  color: #444;
-}
-.adminUserName {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #ea580c;
-}
-.adminUserEmail {
-  font-size: 0.98rem;
-  color: #444;
-}
-.adminUserRole {
-  font-size: 0.98rem;
-  color: #f97316;
-}
-.adminUserLocation,
-.adminUserSkills {
-  font-size: 0.95rem;
-  color: #444;
-}
-
 .logoutButton {
   background: #ea580c;
   color: #fff;
@@ -105,29 +49,4 @@
 
 .logoutButton:hover {
   background: #c2410c;
-}
-
-.adminDeleteBtn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #f97316;
-  color: white;
-  border: none;
-  padding: 9px 10px;
-  border-radius: 10%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-  z-index: 10;
-}
-
-.adminDeleteBtn:hover {
-  background: #ea580c;
-}
-
-.adminDeleteBtn svg {
-  font-size: 20px;
 }

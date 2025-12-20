@@ -44,7 +44,7 @@
 
 .searchBar {
   background: #f97316;
-  border-radius: 12px;
+  border-radius: 20px;
   padding: 16px;
   display: flex;
   align-items: center;
@@ -53,6 +53,7 @@
 .searchBar input {
   width: 100%;
   border: none;
+  border-radius: 50px;
   background: transparent;
   color: white;
   font-size: 16px;
@@ -86,12 +87,14 @@
 
 .welcome {
   color: #000000;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
 }
 
 .name {
   color: #ea580c;
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 .tasksGrid {
@@ -151,9 +154,9 @@
 .taskStatus {
   background: #e9edf3;
   color: #000000;
-  padding: 4px 12px;
+  padding: 8px 16px;
   border-radius: 12px;
-  font-size: 12px;
+  font-size: 1em;
   font-weight: 600;
   display: inline-block;
   margin: 0;
@@ -200,7 +203,7 @@
 
 .bigSearch {
   background: #f97316;
-  border-radius: 24px;
+  border-radius: 20px;
   padding: 12px 16px;
   display: flex;
   align-items: center;
@@ -249,7 +252,6 @@
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
-  margin-bottom: 10px;
 }
 
 .acceptButton:hover {
@@ -257,11 +259,11 @@
 }
 
 .acceptedButton {
-  background: #10b981;
+  background: #000000;
   color: white;
   border: none;
   padding: 8px 16px;
-  border-radius: 12px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 14px;
   margin-bottom: 10px;
@@ -328,6 +330,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: left;
 }
 
 .compactTaskMeta {
@@ -345,7 +348,7 @@
 
 .compactTaskBudget {
   font-size: 12px;
-  color: #059669;
+  color: #000000;
   font-weight: 500;
 }
 
@@ -353,6 +356,7 @@
   font-size: 11px;
   color: #6b7280;
   margin-bottom: 4px;
+  text-align: left;
 }
 
 .compactCompleteButton,

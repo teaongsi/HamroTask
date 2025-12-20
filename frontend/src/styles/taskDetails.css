@@ -73,6 +73,7 @@
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .taskMeta span {
@@ -134,7 +135,7 @@
 }
 
 .acceptBtn {
-  background: #10b981;
+  background: #f97316;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -144,11 +145,11 @@
 }
 
 .acceptBtn:hover {
-  background: #059669;
+  background: #ef4444;
 }
 
 .rejectBtn {
-  background: #ef4444;
+  background: #000000;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -158,7 +159,7 @@
 }
 
 .rejectBtn:hover {
-  background: #dc2626;
+  background: #1e1e1e;
 }
 
 .acceptedBtn {
@@ -197,7 +198,6 @@
   display: flex;
   gap: 12px;
   align-items: center;
-  margin-top: 15px;
   flex-wrap: wrap;
 }
 
@@ -233,6 +233,7 @@
   align-items: center;
   justify-content: center;
   transition: background 0.2s;
+  border-radius: 8px;
 }
 
 .deleteBtn:hover {
@@ -244,7 +245,7 @@
 }
 
 .completeBtn {
-  background: #10b981;
+  background: #000000;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -255,7 +256,7 @@
 }
 
 .completeBtn:hover {
-  background: #059669;
+  background: #1e1e1e;
 }
 
 .completeBtn:disabled {

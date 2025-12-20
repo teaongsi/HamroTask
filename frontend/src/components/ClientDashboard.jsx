@@ -91,7 +91,7 @@ export default function ClientDashboard() {
                     <h3>Posted Tasks</h3>
                     {user && (
                         <div className="welcome">
-                            welcome <span className="name">{user.firstName} {user.lastName}</span>
+                            Welcome <span className="name">{user.firstName} {user.lastName}</span>
                         </div>
                     )}
                 </div>
@@ -110,13 +110,35 @@ export default function ClientDashboard() {
                             task.description?.toLowerCase().includes(search.toLowerCase()) ||
                             task.category?.toLowerCase().includes(search.toLowerCase())
                         )).map((task) => (
-                            <CompactTaskCard
-                                key={task._id}
-                                task={task}
-                                showActions={true}
-                                onComplete={handleMarkCompleted}
-                                updating={updating === task._id}
-                            />
+                            <div key={task._id} className="taskCard" onClick={() => navigate(`/task/${task._id}`)}>
+                                <div className="taskImg">
+                                    {task.image ? (
+                                        <img
+                                            src={task.image.startsWith('/uploads/')
+                                                ? `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}${task.image}`
+                                                : task.image}
+                                            alt="Task"
+                                            className="taskImage"
+                                            onError={e => {e.target.onerror = null; e.target.src = '/assets/logo.png';}}
+                                        />
+                                    ) : (
+                                        <div className="imagePlaceholder">image</div>
+                                    )}
+                                </div>
+                                <div className="taskInfo">
+                                    <h4>{task.title}</h4>
+                                    <p className="taskStatus">{task.status}</p>
+                                    {task.status === 'in progress' && (
+                                        <button
+                                            className="completeButton"
+                                            disabled={updating === task._id}
+                                            onClick={e => {e.stopPropagation(); handleMarkCompleted(task._id);}}
+                                        >
+                                            {updating === task._id ? 'Updating...' : 'Mark as Completed'}
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
                         ))
                     )}
                 </div>

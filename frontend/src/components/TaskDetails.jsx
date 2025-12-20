@@ -101,7 +101,7 @@ export default function TaskDetails() {
     };
 
     const isTaskOwner = () => {
-        return user && task && user._id === task.postedBy?._id && user.role === 'client';
+        return user && task && user._id === task.postedBy?._id && user.role !== 'tasker';
     };
 
     if (loading) return <div>Loading...</div>;
@@ -116,9 +116,6 @@ export default function TaskDetails() {
                 {editing ? (
                     <div className="editTaskSection">
                         {/* EditTask form */}
-                        <div style={{marginBottom: '1rem'}}>
-                            <h3>Edit Task</h3>
-                        </div>
                         <EditTask task={task} onSave={handleEditSave} onCancel={handleEditCancel} />
                     </div>
                 ) : (

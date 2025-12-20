@@ -65,7 +65,17 @@ export default function CompactTaskCard({ task, showActions = false, onComplete,
             onClick={e => handleActionClick(e, 'delete')}
             title="Delete Task"
           >
-            <DeleteIcon style={{fontSize: '16px'}} />
+          <DeleteIcon
+            sx={{
+                backgroundColor: "#f97316",
+                borderRadius: "10px",
+                padding: "4px",
+                cursor: "pointer",
+                "&:hover": {
+                backgroundColor: "#fed7aa",
+                },
+            }}
+            />
           </button>
         )}
       </div>
